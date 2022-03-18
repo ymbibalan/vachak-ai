@@ -70,9 +70,9 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "خلاصه درسهای یادگیری ماشین ارائه شده توسط اندرو اینگ در کورسرا"
+  name   : 
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : ""
+  bio    : "خلاصه درسهای یادگیری ماشین ارائه شده توسط اندرو اینگ در کورسرا"
   links:
     - label: "vachak"
       icon: "fas fa-fw fa-link"
