@@ -15,7 +15,7 @@ tags:
 ولی در الگوریتم های machine learning ، ورودی ها data و answer است و در خروجی rules را میگیریم.
 در مثال خودمان،چند نمونه از درآمد و هزینه را به عنوان ورودی و همچنین اینکه در هر مورد چقدر سود کرده ایم یا ضرر را به عنوان پاسخ به سیستم می‌دهیم و در جواب rule یعنی سود،مخارج و درآمد را میگیریم.
 
-![](../../assets/images/posts/chapter-one/ch01-01.jpg)
+![](../../assets/images/posts/chapter-one/ch01-01.png)
 
 این دیاگرام بسیار مهم و گویا است.
 در حقیقت در یک مسئله ML ، ما به سیستم مثال هایی میدهیم که در واقع چه میخواهیم ببینیم،و از کامپیوتر میخواهیم rule هارا کشف کند.
@@ -40,14 +40,14 @@ Model =keras.Sequential([keras.layers.dense(units=1, input-shape=[1])])
 
 ### p4
 
-![](./media/ch01-02.png)
+![](../../assets/images/posts/chapter-one/ch01-02.png)
 
 این یک مسئله‌ی regression هست و خط آنها در حقیقت مدل ماست که بر آن مبنا قیمت هر خانه را بر مبنای size آن تخمین میزنیم یعنی size ورودی و قیمت خروجی است.
 
-![](./media/ch01-03.png)
+![](../../assets/images/posts/chapter-one/ch01-03.png)
 حال میتوانیم فرض کنیم که علاوه برسانید، پارامترهای بیشتری داریم برای تخمین قیمت؛ مثلا تعداد اتاق zip code,wealth پس نیاز به neuron های بیشتری داریم.
 
-![](./media/ch01-04.png)
+![](../../assets/images/posts/chapter-one/ch01-04.png)
 نکته‌ی بسیار مهم اینکه هر کدام از این پارامترها در هر مرحله یک وزن مخصوص به خود دارند.
 
 فعلاً ما با همان NN ساده کار میکنیم.
@@ -91,7 +91,7 @@ Computer Vision is the field of having a computer understand and label what is p
 در این قسمت قرار است روی Fashion MNIST کار کنیم.
 در حقیقت مسئله این است که ما تعداد بسیار زیادی تصویر ورودی به کامپیوتر میدهیم و از آن می‌خواهیم که pattern استفاده میکند برای تشخیص unseen data.
 
-![](./media/ch01-05.png.png)
+![](../../assets/images/posts/chapter-one/ch01-05.png.png)
 
 مهمترین مسئله و تفاوت در این مرحله با مرحله‌ی قبل،input data خواهد بود. در این جا ما عکس‌های gray-scale داریم در سایز 28*28 پس بجای یک nearon در ورودی، 28*28 تا خواهیم داشت خب،نکته‌ی جالب این است که این data در keras موجود است.
 
@@ -113,7 +113,7 @@ fashion-mnist=keras.datasets.fashion-mnist(train-images,train-labels),(test-imag
 
 در درس deep learning گرفتیم که عموماً در neuron هایی که داریم نیاز به activation هایی داریم که nor-linear باشند؛ لذا برای این کار یک راه relu است.
 
-![](./media/ch01-06.png)
+![](../../assets/images/posts/chapter-one/ch01-06.png)
 
 Softmax takes a set of values, and effectively picks the biggest one.
 
