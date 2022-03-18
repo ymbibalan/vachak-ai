@@ -18,10 +18,3 @@ $$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
 نتیجه کد بالا برابر با زیر خواهد بود :
 
 $$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
-
-```mermaid
-graph LR
-   A --> B
-   A -->C
-   C -->D
-```
