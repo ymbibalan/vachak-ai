@@ -15,8 +15,9 @@ tags:
 مثلا درآمد و هزینه را به عنوان ورودی به یک برنامه میدهیم و از طرفی به آن میگوییم سود حاصل تفریق این دو پارامتر است و در جواب سود را میگیریم.
 ولی در الگوریتم های machine learning ، ورودی ها data و answer است و در خروجی rules را میگیریم.
 در مثال خودمان،چند نمونه از درآمد و هزینه را به عنوان ورودی و همچنین اینکه در هر مورد چقدر سود کرده ایم یا ضرر را به عنوان پاسخ به سیستم می‌دهیم و در جواب rule یعنی سود،مخارج و درآمد را میگیریم.
-
+<!---
 ![](../assets/images/posts/chapter-one/ch01-01.png)
+--->
 
 این دیاگرام بسیار مهم و گویا است.
 در حقیقت در یک مسئله ML ، ما به سیستم مثال هایی میدهیم که در واقع چه میخواهیم ببینیم،و از کامپیوتر میخواهیم rule هارا کشف کند.
@@ -35,8 +36,9 @@ Machine learning is all about a computer learning a pattern to distinguish thing
 خب این course خیلی سریع سراغ کدنویسی رفته. نکته مهم و مثبت این است که من ویدیوهای مربوط به deep learning رو پیش تو مطالعه کردم. پس مشکلی نیست.
 این اولین خط برنامه نویسی ماست.
 
+```python
 Model =keras.Sequential([keras.layers.dense(units=1, input-shape=[1])])
-
+```
 ### p3
 
 این خط از برنامه با استفاده از زبان python و tensorflow با کمک یک API در tensorflow به نام keras  نوشته شده است.
@@ -44,7 +46,7 @@ Keras تعریف Neular net  را در محیط tensorflow  بسیار ساده 
 A neural network is a set of functions that can learn patterns.
 آنچه که ما در این یک خط برنامه نوشتیم، در حقیقت ساده ترین نمونه یک neural network است که فقط یک neuron دارد.
 
-![](../assets/images/posts/chapter-one/ch01-07.png)
+<!--- ![](../assets/images/posts/chapter-one/ch01-07.png) --->
 
 در keras ما از کلمه ی dense برای تعریف یک لایه از  neuran استفاده میکنیم.
 In keras, we use the word “dense” to define a layer of connected neurons.
@@ -55,14 +57,14 @@ In keras, we use the word “dense” to define a layer of connected neurons.
 
 ### p4
 
-![](../assets/images/posts/chapter-one/ch01-02.png)
+<!--- ![](../assets/images/posts/chapter-one/ch01-02.png)  --->
 
 این یک مسئله‌ی regression هست و خط آنها در حقیقت مدل ماست که بر آن مبنا قیمت هر خانه را بر مبنای size آن تخمین میزنیم یعنی size ورودی و قیمت خروجی است.
 
-![](../assets/images/posts/chapter-one/ch01-03.png)
+<!--- ![](../assets/images/posts/chapter-one/ch01-03.png) --->
 حال میتوانیم فرض کنیم که علاوه برسانید، پارامترهای بیشتری داریم برای تخمین قیمت؛ مثلا تعداد اتاق zip code,wealth پس نیاز به neuron های بیشتری داریم.
 
-![](../assets/images/posts/chapter-one/ch01-04.png)
+<!--- ![](../assets/images/posts/chapter-one/ch01-04.png)  --->
 نکته‌ی بسیار مهم اینکه هر کدام از این پارامترها در هر مرحله یک وزن مخصوص به خود دارند.
 
 فعلاً ما با همان NN ساده کار میکنیم.
@@ -71,8 +73,11 @@ In keras, we use the word “dense” to define a layer of connected neurons.
 
 همانطور که میدانیم مباحث Machine Learning مملو است از فرمول و روابط ریاضی در keras این روابط در یک سری توابع آمده است.
 
+```python
+
 Model.compile (optimizer=’sgd’,loss=mea^squared error’)
 
+```
 در ابتدا طبیعتاً NN هیچ ایده‌ای از خروجی مطلوب ندارد.بنابراین یک حدس اولیه را در نظر میگیرد.سپس از دیتایی که ما به عنوان ورودی در اختیارش قرار میدهیم استفاده میکند تا متوجه شود تا چه حد حدس اولیه‌اش درست یا غلط بوده است تابع loss در حقیقت این را اندازه میگیرد. و سپس نتیجه را به optimizer میدهد و optimizer حدس بعدی را امتحان میکند.
 
 Each guess should be better than the one before.
@@ -120,15 +125,31 @@ Computer Vision is the field of having a computer understand and label what is p
 
 در این قسمت قرار است روی Fashion MNIST کار کنیم.
 در حقیقت مسئله این است که ما تعداد بسیار زیادی تصویر ورودی به کامپیوتر میدهیم و از آن می‌خواهیم که pattern استفاده میکند برای تشخیص unseen data.
-
+<!---
 ![](../assets/images/posts/chapter-one/ch01-05.png.png)
+--->
 
+
+  $$
+  Fashion MNIST = \begin{cases}
+    70 K images  =>
+    \begin{cases}
+    60K Training  \\
+10 K Testing \\
+
+\end{cases}
+     \\
+10 Categories \\
+28*28 \\
+gray scale
+\end{cases}
+  $$
 مهمترین مسئله و تفاوت در این مرحله با مرحله‌ی قبل،input data خواهد بود. در این جا ما عکس‌های gray-scale داریم در سایز 28*28 پس بجای یک nearon در ورودی، 28*28 تا خواهیم داشت خب،نکته‌ی جالب این است که این data در keras موجود است.
 
 ```python
 
-fashion-mnist=keras.datasets.fashion-mnist(train-images,train-labels),(test-images-test-labels)
-=fashion-mnist.lood-data)
+fashion-mnist = keras.datasets.fashion-mnist
+(train-images,train-labels),(test-images-test-labels)=fashion-mnist.lood-data)
 
 ```
 
@@ -153,9 +174,9 @@ flatten این ماتریس 28×28 را میگیرد و یک ماتریس 784×1
 .بهتر کار میکند normalized با NN
 
 در درس deep learning گرفتیم که عموماً در neuron هایی که داریم نیاز به activation هایی داریم که nor-linear باشند؛ لذا برای این کار یک راه relu است.
-
+<!---
 ![](../assets/images/posts/chapter-one/ch01-06.png)
-
+--->
 Softmax takes a set of values, and effectively picks the biggest one.
 
 اگر ورودی softmax این باشد.
