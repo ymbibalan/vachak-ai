@@ -131,20 +131,11 @@ Computer Vision is the field of having a computer understand and label what is p
 --->
 
 
-  $$
-  Fashion MNIST = \begin{cases}
-    70 K images  =>
-    \begin{cases}
-    60K Training  \\
-10 K Testing \\
+$$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
 
-\end{cases}
-     \\
-10 Categories \\
-28*28 \\
-gray scale
-\end{cases}
-  $$
+
+
+$$ Fashion MNIST = \begin{cases} 70 K images  => \begin{cases} 60K Training  \\10 K Testing \\ \end{cases} \\ 10 Categories \\ 28*28 \\gray scale \end{cases} $$
 مهمترین مسئله و تفاوت در این مرحله با مرحله‌ی قبل،input data خواهد بود. در این جا ما عکس‌های gray-scale داریم در سایز 28*28 پس بجای یک nearon در ورودی، 28*28 تا خواهیم داشت خب،نکته‌ی جالب این است که این data در keras موجود است.
 
 ```python
