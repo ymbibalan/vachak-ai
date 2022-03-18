@@ -5,6 +5,8 @@ categories:
   - ml
 tags:
   - course
+  - katex
+
 ---
 
 
