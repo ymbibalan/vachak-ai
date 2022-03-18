@@ -6,7 +6,6 @@ categories:
 tags:
   - course
   - katex
-
 ---
 
 
