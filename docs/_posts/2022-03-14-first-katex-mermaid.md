@@ -20,7 +20,7 @@ $$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
 
 $$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
 
-برای کیشدن دیاگرام از mermaid استفاده کنید
+برای کشیدن دیاگرام می توانید از [mermaid](https://mermaid-js.github.io/mermaid/#/) استفاده کنید
 
 ```mermaid
 graph LR
