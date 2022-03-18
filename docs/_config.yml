@@ -42,9 +42,6 @@ direction: rtl
 kramdown:
   math_engine: katex
 
-url: "https://ymbibalan.github.io" # the base hostname & protocol for your site
-baseurl: "/vachak-ai"
-
 include:
   - _pages
 
