@@ -42,6 +42,8 @@ direction: rtl
 kramdown:
   math_engine: katex
 
+url: "https://ymbibalan.github.io" # the base hostname & protocol for your site
+baseurl: "/vachak-ai"
 
 include:
   - _pages
@@ -68,9 +70,9 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "واچک: هوش مصنوعی"
+  name   : "خلاصه درسهای یادگیری ماشین ارائه شده توسط اندرو اینگ در کورسرا"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "خلاصه درسهای یادگیری ماشین ارائه شده توسط اندرو اینگ در کورسرا"
+  bio    : ""
   links:
     - label: "vachak"
       icon: "fas fa-fw fa-link"
