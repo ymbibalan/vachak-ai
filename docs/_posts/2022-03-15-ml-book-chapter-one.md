@@ -40,8 +40,10 @@ Machine learning is all about a computer learning a pattern to distinguish thing
 خب این course خیلی سریع سراغ کدنویسی رفته. نکته مهم و مثبت این است که من ویدیوهای مربوط به deep learning رو پیش تو مطالعه کردم. پس مشکلی نیست.
 این اولین خط برنامه نویسی ماست.
 
-```python
+```ruby
+
 Model =keras.Sequential([keras.layers.dense(units=1, input-shape=[1])])
+
 ```
 
 ### p3
@@ -80,7 +82,7 @@ In keras, we use the word “dense” to define a layer of connected neurons.
 
 همانطور که میدانیم مباحث Machine Learning مملو است از فرمول و روابط ریاضی در keras این روابط در یک سری توابع آمده است.
 
-```python
+```ruby
 
 Model.compile (optimizer=’sgd’,loss=mea^squared error’)
 
@@ -98,7 +100,7 @@ Sgd = schotastic gradient descent.
 
 مرحله بعدی کارما این است که known data را وارد کنیم.
 
-```python
+```ruby
 
 xs=np.array([-1,0,1,2,3,4],dtype=float)
 ys=np.array([-3,-1,1,3,5,7],dtype=float)
@@ -142,7 +144,7 @@ $$ Fashion MNIST = \begin{cases} 70 K images => \begin{cases} 60K Training \\10 
 
 مهمترین مسئله و تفاوت در این مرحله با مرحله‌ی قبل،input data خواهد بود. در این جا ما عکس‌های gray-scale داریم در سایز 28*28 پس بجای یک nearon در ورودی، 28*28 تا خواهیم داشت خب،نکته‌ی جالب این است که این data در keras موجود است.
 
-```python
+```ruby
 
 fashion-mnist = keras.datasets.fashion-mnist
 (train-images,train-labels),(test-images-test-labels)=fashion-mnist.lood-data)
@@ -263,6 +265,8 @@ Convolution در حقیقت در نظر گرفتن فیلترهای مختلف �
 
 ### p14
 
+```ruby
+
 Tmplementing Convolutional layers:
 
 model=tf.keras.models.sequential ([tf.keras.layers-ConvZD(64,(3,3),activation=’relu’,input- shape=(28,27,1)),
@@ -272,9 +276,11 @@ tf.keras.layers.MaxPooling ZD (2,2),
 tf.keras.layers.Conv ZD(64,(3,3),oc…. =’relu’)
 tf.keras.layers.MaxPooling ZD(2,2)
 
-          tf.keras.layers.Flattenc…,
-           tf.keras.layers.Dense(128,activation=’relu’),
-           tf.keras.layers.Dense(10,activation=’so….’
+tf.keras.layers.Flattenc…,
+tf.keras.layers.Dense(128,activation=’relu’),
+tf.keras.layers.Dense(10,activation=’so….’)
+
+```
 
 *سه خط آخرش همان است که پیش تر داشتیم.  
 1- در اینجا به keras میگوییم که 64 فیلتر را برای ما درنظر بگیرد سایز هر پیکسل 3*3 است. activationهست یعنی مقادیر منفی نادیده گرفته میشود و input-hope هم ....
