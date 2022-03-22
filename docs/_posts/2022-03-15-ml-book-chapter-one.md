@@ -147,7 +147,7 @@ $$ Fashion MNIST = \begin{cases} 70 K images => \begin{cases} 60K Training \\10 
 ```ruby
 
 fashion-mnist = keras.datasets.fashion-mnist
-(train-images,train-labels),(test-images-test-labels)=fashion-mnist.lood-data)
+(train-images, train-labels), (test-images-test-labels) = fashion-mnist.lood-data)
 
 ```
 
