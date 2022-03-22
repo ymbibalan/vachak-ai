@@ -58,9 +58,14 @@ body {
 
     @include breakpoint($small) {
       .MathJax_Display {
-        overflow: auto;
+        overflow: initial;
         direction: ltr;
       }
+    }
+
+    .MathJax_Display {
+      overflow: auto;
+      direction: ltr;
     }
 
     .page__content,
