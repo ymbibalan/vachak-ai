@@ -56,17 +56,17 @@ body {
     clear: both;
     text-align: justify;
 
-    @include breakpoint($small) {
-      .MathJax_Display {
-        overflow: initial;
-        direction: ltr;
-      }
-    }
+    // @include breakpoint($small) {
+    //   .MathJax_Display {
+    //     overflow: initial;
+    //     direction: ltr;
+    //   }
+    // }
 
-    .MathJax_Display {
-      overflow: auto;
-      direction: ltr;
-    }
+    // .MathJax_Display {
+    //   overflow: auto;
+    //   direction: ltr;
+    // }
 
     .page__content,
     .page__meta,
