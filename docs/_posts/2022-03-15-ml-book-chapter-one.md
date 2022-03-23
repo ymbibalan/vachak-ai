@@ -372,3 +372,45 @@ Loss=0.41
 
 Week4
 خب تا اینجا عالیه !من تونستم یک CNN را برای mnist و fasion mnist پیاده سازی کنم .نکته ای که وجود دارد این است که تصاویر موجود در این دیتاست ها کم حجم (28×28) هستند و همچنین objectها در مرکزشان قرار دارد.حالا میخواهیم وارد پروژه های پیچیده تر شویم.
+
+### صفحه هفدهم
+
+تا اینجا دیدیم که چگونه میتوانیم یک classifier با DNN درست کنیم و چگونه کارایی آن را با افزودن DNN بهبود ببخشیم.
+یکی از محدودیت های ما تا اینجا استفاده از dataset بود که باید شامل عکس هایی بسیار uniform باشد. حالا شرایط را بررسی میکنیم که تصاویر بزرگتر باشند و feature در هرجای تصویر (نه صرفاً در مرکز) قرار گرفته باشند.
+
+در آنچه تاکنون مطالعه کردیم،یک dataset داشتیم که تصاویر مربوط به training و testing در آن جدا و مشخص بود.
+\*در واقعیت اینگونه نیست و لازم است خودمان dataset را generate کنیم.
+در اینجا چند مورد از API ها را بررسی میکنیم که در این امر ما را یاری خواهند کرد.
+
+#### **Image Generator in TensorFlow.**
+
+```ruby
+from tensorflow.keras.preprocessing image import Image Data Generator.
+
+train-datagen=Image Data Generator (rescale=1/255)*
+*to normalize the data
+train-generator=*train-datagen.flow-from-directory…….train-dir,
+*باید directory آدرس داده شود و به sub-directory
+target-size=(300,300)*,batch-size=128*,class-made=’binary’*
+*همه‌ی تصاویر باید به سایز…. تبدیل شوند.
+*بجای یک به یک 128 تا 128…..
+*it is a binary class fitr
+```
+
+### صفحه هجدهم
+
+Validation generator دقیقاً مثل train-generator است.
+
+```ruby
+validation-generator =test-datagen.flow-from-directory(validation-dir,
+target-size=(300,300),
+batch-size=32,
+class-mode=’binary’)
+```
+
+در حقیقت کاری که ما باید بکنیم آن است که ترتیب زیر تصاویر را در یک directory,ذخیره کنیم و با استفاده از این API آن ها را load کنیم.
+
+<!-- ![](../assets/images/posts/chapter-one/ch01-08.png) -->
+
+خیلی جالب شد.وقتی که من به این ترتیب آدرس میدم و عمل میکنم(مثلاً آدرس training را میدهیم)،عکس های 1،2،3←lable
+horses می خورند و کود میشود و عکس‌ها : Reza- Ahp-Al
