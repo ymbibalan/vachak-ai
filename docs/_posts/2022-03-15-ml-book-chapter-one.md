@@ -414,3 +414,60 @@ class-mode=’binary’)
 
 خیلی جالب شد.وقتی که من به این ترتیب آدرس میدم و عمل میکنم(مثلاً آدرس training را میدهیم)،عکس های 1،2،3←lable
 horses می خورند و کود میشود و عکس‌ها : Reza- Ahp-Al
+
+### صفحه نوزدهم
+
+در اینجا یک مثال human vs horses را بررسی میکنیم.از آنجا که تصاویر و feature ها نسبتاً بزرگتر از تمرینات قبلی هستند،3لایه convolution قبل از DNN در نظر گرفتیم.
+
+```ruby
+model=t.f.keras.models.sequential([t.f.keras.conv ZD(lb,(3,3),activation=’relu’,input-shape=(300,700,3)
+
+t.f.keras.layers.Max Pool ZD(2,2),
+t.f.keras.layers.Conv ZD (32,(3,3),activation=’relu’),
+t.f.keras.layers.Max Pool ZD (2,2)
+t.f.keras.layers.Con ZD(64,(3,3),activation=’relu’),
+t.f.keras.layers.Max Pool ZD(2,2)
+t.f.keras.layers.Flatten( ),
+t.f.keras.layers.Dense(512,activation=’relu’)
+t.f.keras.layers.Dense(1,activation=’sigmoid’)])
+
+```
+
+نکته:تصاویر به کار گرفته شده رنگی می باشند.به همین دلیل input-shape به صورت (300,700,3) می باشد
+
+نکته:Sigmoid تابع بسیار مناسبی است برای binary cbssifi otb ← نکته‌اش این است که وقتی از sigmoid در خروجی استفاده میکنیم،باید یک neuron در نظر بگیریم. برخلاف softmax که نیاز به 2 neuron در خروجی دارد.
+در حقیقت کاری که ما باید بکنیم آن است که ترتیب زیر تصاویر را در یک directory,ذخیره کنیم و با استفاده از این API آن ها را load کنیم.
+
+```ruby
+form tensorflow,keras.optimizers import RMSprop
+model.compile(loss=’binary-crossentory’,optimizer=RMSprop(Ir=0.001),metrics=[‘acc’])
+```
+
+حالا-سراغ trainig میرویم. در اینجا fit کمی متفاوت است.
+
+### صفحه بیستم
+
+```ruby
+History=model.fit-generator
+Train generator,
+Steps.per-epoch=8,
+Epoch=15,
+Validation-data=validation-generator,
+Validation steps=8,
+Verbose=2,
+```
+
+از آنجایی که به جای یک dataset از یک generator استفاده می کنیم بجای model.fit هم از model.fit-generator استفاده می کنیم
+بعد از آنکه training انجام شد،باید predict کنیم و این کد این کار را برای ما انجام می دهد.
+
+```ruby
+Import numpy as np
+From google colab import files
+From keras . preprocessing import image
+Uploaded=files.upload
+For fn in uploaded keys
+Path=content + fn
+Img=image load-image(path,target-size (300,300))
+X=image.img-to-array (img)
+X=np.expand-dims(x,axis=0)
+```
