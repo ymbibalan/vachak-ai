@@ -254,151 +254,136 @@ If y=o ⇒L(y^-y)=-log (1-y^)
 
 ### صفحه دوازهم
 
+بنابراین loss function فقط روی
+یک training example عمل میکند و cost function روی مجموعه ی کامل training example
+
+گرادیان کاهشی (Gradient descent) :
+
+تا اینجا در مورد logistic regression model
+و loss function و cost function آموختم
+
+حال در مورد موضوع مهمی به نام gradient descent حرف خواهیم زد.
+در حقیقت میخواهیم بفهمیم چگونه میتوان با استفاده
+از gradient descent
+مدل را train کرد و b و w مناسب را یافت.
+
+یادآوری:
+
+Logistic regression algorithm
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-23.png) --->
+
+Cost function:
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-24.png) --->
+
+در حقیقت cost function مشخص میکند که تا چه حد b و w روی training set خوب عمل میکنند؟!
+
+در حقیقت،ما به دنبال b و w هستیم که به ازای آن ها (b,w)[
+کمترین مقدار ممکن را داشته باشد.
+
+بنابراین برای ما بهتر است که (w,b)[ یک تابع convex یا همگرا باشد و نه یک تابع non-convex
+
 ### صفحه سیزدهم
 
-خب ، تا اینجا کاری که کردیم این بوده که پیکسل به پیکسل یک تصویر را بررسی کردهایم.مثلاً گفتهایم این پیکسل 10 هست این پیکسل127 و...
-در Convolutional Neural Network ، کمی کلی تر به قضیه نگاه میکنیم.در حقیقت به دنبال feature هایی در تصویر در میگردیم.مثلاً یک بندکفش و یک کف کفش یعنی کفش.این کار را با اعمال فیلترهای مختلف به تصویر انجام میدهیم. هر فیلتر برای آشکارسازی یک feature است.
-Week3:
-What are calvolutions and pooling?
-همانطور که گفتیم تا اینجا ما توانستهایم DNN بسازیم و از آن برای تشخیص Fashion-MNIS1 و MNIS1 استفاده کنیم. کاری که تا اینجا کردهایم Pixel-wise بوده. یعنی پیکسل به پیکسل تصاویر را بررسی کردهایم و راجع به هریک تصمیم گرفتیهایم. 764 پیکسل در هر تصویر؛ سوالی که میخواهیم جواب دهیم این است که: آیا امکان دارد که تصویر را کنسانتره (چکیده) کرد بطوریکه فقط feature های مهم بررسی شوند؟! Convolution این کار را انجام میدهد. در هر تصویر قسمتهای اضافه وجود دارد که الزاماً اطلاعات خاصی به ما نمیدهد.
-Convolution در حقیقت در نظر گرفتن فیلترهای مختلف و اعمال آنها بر کل تصویر است.
-ایدهی کلی آنست که با درنظر گرفتن فیلترهای مناسب،خروجی تولید کنیم که در آن برخی feature ها نمایان باشند.
-اگر convolution را با مفهومی به نام pooling ترکیب کنیم به الگوریتم بسیار قدرتمندی میرسیم.
-\*pooling در حقیقت روشی برای compress کردن یک تصویر است. یکی از سادهترین روشهای pooling، nm pooling است که در آن بزرگترین عدد از هر 4 تا پیکسل همسایه انتخاب میشود.
+این یکی از دلایلی بود که ما از squared error برای loss استفاده نکردیم.
+
+برای آن که مقادیر مناسب b , w را پیدا کنیم،ابتدا مقدار اولیه ای بر آن ها در نظر میگیریم و کاری که با استفاده از gradient descent انجام میدهیم آن است که گام به گام مقادیر b , w را بهبود می بخشیم تا [ به کمترین مقدار خود برسد.برای سادگی بیشتر فرض میکنیم [ فقط به w وابسته است.
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-25.png) --->
+
+کاری که ما انجام میدهیم مقدار w را بدین صورت آپدیت میکنیم.
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-26.png) --->
+
+این کار را ادامه میدهیم تا الگوریتم همگرا شود.
+
+پارامتر Learning rate=> اندازی ی گامی را که در هر مرحله برمیداریم کنترل میکند
+در کد نویسی از این عبارت برای d](w) / dw استفاده میکند.⇒
+
+W=w-∝ dw
 
 ### صفحه چهاردهم
 
-```ruby
+فرض کنیم که W در نقطه 1 باشد:
 
-Tmplementing Convolutional layers:
+میدانیم که مشتق ، در حقیقت شیب تابع در هر نقطه است. لذا شیب تابع در نقطه‌ی W مثبت است.
 
-model=tf.keras.models.sequential ([tf.keras.layers-ConvZD(64,(3,3),activation=’relu’,input- shape=(28,27,1)),
+پس W جدید کمتر از W قدیم است. پس همانطور که مشخص است W دارد در مسیر درست (کم شدن J) حرکت میکند.
 
-tf.keras.layers.MaxPooling ZD (2,2),
+حال فرض کنیم W از نقطه‌ی z کار خود را شروع کند. در این صورت شیب در این نقطه منفی خواهد بود و لذا W جدید بزرگتر از W قدیم. پس بازهم W به درستی آپدیت میشود.
 
-tf.keras.layers.Conv ZD(64,(3,3),oc…. =’relu’)
-tf.keras.layers.MaxPooling ZD(2,2)
+حال اگر b را هم در Cost function در نظر بگیریم.(J(w,b
 
-tf.keras.layers.Flattenc…,
-tf.keras.layers.Dense(128,activation=’relu’),
-tf.keras.layers.Dense(10,activation=’so….’)
+<!--- ![](../assets/images/posts/chapter-two/ch02-27.png) --->
 
-```
+گراف محاسباتی (Computation Graph) :
 
-*سه خط آخرش همان است که پیش تر داشتیم.  
-1- در اینجا به keras میگوییم که 64 فیلتر را برای ما درنظر بگیرد سایز هر پیکسل 3*3 است. activationهست یعنی مقادیر منفی نادیده گرفته میشود و input-hope هم ....
-2- برای هر پیکسل مجاور، بزرگترین مقدار به عنوان خروجی در نظر گرفته میشود.
-3- سپس یک لایهی دیگر از pooling layer,Convolutional اضافه شده است.
-بنابراین تا قبل از اینکه تصویر به flatten برسد، کوچک و کوچکتر شده و اطلاعات اضافی آن حذف شده است.
-Model summary ( )
-ابزار بسیار مفیدی است که اطلاعات بسیار خوبی راجع ....
+به طور کلی Computation مربوط به یک NN دو قسمت دارد:
+
+1- forward prop ⇒ to compute output
+
+2- back prop ⇒ to update weights
+
+برای توضیح هرچه بهتر computation، با مثال ساده‌ای شروع میکنیم.فرض کنیم میخواهیم تابع زیر را حساب کنیم.
+
+J(a,b,c)=3(a+bc)
 
 ### صفحه پانزدهم
 
-Output shape
-(none,2b,2b,b4)
-Output size=( n+2p-fs+1)(n+2p-fs+1)
+محاسبه‌ی این تابع سه مرحله دارد: ابتدا b\*c را حساب میکنیم. سپس حاصل را با a جمع میکنیم و نهایتاً حاصل را در 3 ضرب میکنیم.
 
-طبیعتا با افزودن 2 لایه ی pooling convolution ، سرعت پردازش کاهش یابد.
-اتفاقی که می افتد این است:
-برای هر تصویر ،b4 فیلتر در نظر گرفته میشود و سپس تصویر compress میشود و دوباره b4 فیلتر اعمال میشود و دوباره تصویرcompressمیشود و سپس حاصل به DNN اعمال میشود و این اتفاق برای 60000 تصویر می افتد در هر epoch
-خب حالا به سراغ یک تمرین میرویم و سعی میکنیم با تغییر پارامتر های مختلف تاثیر هر یک را بررسی کنیم.
-خب مرحله به مرحله پیش میرویم چیزی که پیش از اعمال CNN داشتیم یک DNN بود که نتایج به ترتیب هستند.(GPU)
+میتوان این سه مرحله را در computation رسم کرد.
 
-Training= acc=0.8934
-Loss=0.2911
-Testing= acc=0.8813
-Loss=0.3348
-Total time/epoch=>5s,90 µ.s
-حالا ، convolution neural netwr را به DNN اضافه میکنیم.
+a=bc
 
-Training= acc=0.9285
-Loss=0.1925
-Testing= acc=0.9048
-Loss=0.2662
-Total time/epoch=>13s,211 µ.s
-نکته بسیار مهمی در مورد کدنویسی CNN وجود دارد.
-Training \_images=training_images.reshape (60000,28,28)
-Test_images=test_images.reshape(10000,28,28)
-That `s because the first convolution expects a single tensor containing everything so instead of 60000 28×28×1 items in a list ,are have a single 4D lost + hot is 60000 ×28×28×1
+v=a+u
+
+J=3v
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-28.png) --->
+
+مثلاً اگر فرض کنیم c=2,b=3,a=5 باشد.
+
+<!--- ![](../assets/images/posts/chapter-two/ch02-29.png) --->
+
+خب تا اینجا دیدیم که چگونه مسیر رفت محاسبه میشود در این قسمت چگونگی محاسبه‌ی مسیر برگشت را بررسی میکنیم.
+
+Derivatives With a Computation Graph:
+
+ابتدا نحوه‌ی محاسبه‌ی مشتق ها را بررسی میکنیم.
+
+ابتدا فرض کنیم میخواهیم dj/dv را محاسبه کنیم.
+
+J=3v⇒dj/dv=3
 
 ### صفحه شانزدهم
 
-خب بریم سراغ بررسی حالت اولیه:
+<!--- ![](../assets/images/posts/chapter-two/ch02-30.png) --->
 
-```ruby
-Training= acc=0.93
-Loss=0.1871
-Testing= acc=0.91
-Loss=0.25
-Time=13s
-```
+حال dj/da را حساب میکنیم
 
-حالا به جای 64،32 در نظر میگیریم
+<!--- ![](../assets/images/posts/chapter-two/ch02-31.png) --->
 
-```ruby
-Training= acc=0.9195
-Loss=0.2178
-Testing= acc=0.90
-Loss=0.26
-Time=10s
-```
+وقتی کد میزنیم ، معمولاً یک "final output variable" داریم که برای ما مهم است در اینجا J هست.
 
-حالا16:
+برای راحتی بیشتر فقط یک قسمت را در نامگذاری بررسی میکنیم.
 
-```ruby
-Training= acc=0.90
-Loss=0.26
-Testing= acc=0.82
-Loss=0.29
-Time=9s
-```
+<!--- ![](../assets/images/posts/chapter-two/ch02-32.png) --->
 
-حالا convolution اخر را برمیداریم.
+با این تفاسیر da یعنی dj/da.
 
-```ruby
-Training= acc=0.85
-Loss=0.37
-Testing= acc=0.90
-Loss=0.26 time=11s
-```
+<!--- ![](../assets/images/posts/chapter-two/ch02-33.png) --->
 
-حالا یک لایه اضافه تر میکنیم.=> چرا؟ شاید سایز تصویر زیاد کوچک شد.
+Logistic Regression Gradient Descent:
 
-```ruby
-Training= acc=0.86
-Loss=0.37
-Testing= acc=0.85
-Loss=0.41
+در این بخش راجع به این صحبت میکنیم که چگونه میتوان مشتقات را حساب کرد تا با استفاده از آن gradient descent برای logistic regresion پیاده‌سازی شود.
 
-```
+<!--- ![](../assets/images/posts/chapter-two/ch02-34.png) --->
 
-Week4
-خب تا اینجا عالیه !من تونستم یک CNN را برای mnist و fasion mnist پیاده سازی کنم .نکته ای که وجود دارد این است که تصاویر موجود در این دیتاست ها کم حجم (28×28) هستند و همچنین objectها در مرکزشان قرار دارد.حالا میخواهیم وارد پروژه های پیچیده تر شویم.
+فعلاً فقط بر روی یک مثال از fraing set متمرکز میشویم.
 
 ### صفحه هفدهم
-
-تا اینجا دیدیم که چگونه میتوانیم یک classifier با DNN درست کنیم و چگونه کارایی آن را با افزودن DNN بهبود ببخشیم.
-یکی از محدودیت های ما تا اینجا استفاده از dataset بود که باید شامل عکس هایی بسیار uniform باشد. حالا شرایط را بررسی میکنیم که تصاویر بزرگتر باشند و feature در هرجای تصویر (نه صرفاً در مرکز) قرار گرفته باشند.
-
-در آنچه تاکنون مطالعه کردیم،یک dataset داشتیم که تصاویر مربوط به training و testing در آن جدا و مشخص بود.
-\*در واقعیت اینگونه نیست و لازم است خودمان dataset را generate کنیم.
-در اینجا چند مورد از API ها را بررسی میکنیم که در این امر ما را یاری خواهند کرد.
-
-#### **Image Generator in TensorFlow.**
-
-```ruby
-from tensorflow.keras.preprocessing image import Image Data Generator.
-
-train-datagen=Image Data Generator (rescale=1/255)*
-*to normalize the data
-train-generator=*train-datagen.flow-from-directory…….train-dir,
-*باید directory آدرس داده شود و به sub-directory
-target-size=(300,300)*,batch-size=128*,class-made=’binary’*
-*همه‌ی تصاویر باید به سایز…. تبدیل شوند.
-*بجای یک به یک 128 تا 128…..
-*it is a binary class fitr
-```
 
 ### صفحه هجدهم
 
